@@ -1,6 +1,4 @@
 name: Continuous Integration
-on: [pull_request]
-name: Enforce ClickUp ID
 on:
   pull_request:
     types:
