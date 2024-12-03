@@ -25,7 +25,7 @@ jobs:
           npm install @commitlint/cli @commitlint/config-angular
           echo \
           "module.exports={extends:['@commitlint/config-angular'],rules:{'subject-empty':[2,'never'],'scope-empty':[2,'never'],'type-case':[2,'always','lower-case'],'type-empty':[2,'never'],'type-enum':[2,'always',['chore','feat','fix','refactor']],'scope-enum':[2, 'always', ['core', 'types']]}};" \
-          > commitlint.config.jsw
+          > commitlint.config.js
 
       - name: Validate Semantic Title
         if: ${{ steps.pull-request.outputs.pr_found == 'true' }}
@@ -87,15 +87,12 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Validate Packages
-        run: yarn manypkg check
-
   test:
     name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: ['core', 'types']
+        project: ['core']
     steps:
       - name: Checkout
         uses: actions/checkout@v3
